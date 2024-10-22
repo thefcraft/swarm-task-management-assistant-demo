@@ -2,6 +2,9 @@
 
 This is a demo project showcasing the use of the Swarm framework for creating a multi-agent system for task management. Swarm is an experimental, educational framework for exploring ergonomic, lightweight multi-agent orchestration.
 
+## Note:
+just an basic demo due to api constraints as it requires function calling which is most open source llm lacks 
+
 ## About Swarm
 
 Swarm is a Python-based framework that allows you to create and orchestrate a network of agents, each with their own instructions and capabilities. It is designed to be lightweight, scalable, and highly customizable, making it a great tool for exploring the patterns and principles of multi-agent systems.
