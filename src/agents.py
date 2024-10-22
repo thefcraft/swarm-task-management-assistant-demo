@@ -1,18 +1,20 @@
 from swarm import Swarm, Agent
 import os
 import dotenv
-from tools import (
+
+from . import (
     transfer_to_task_creation_agent,
     transfer_to_task_view_agent,
     transfer_to_task_update_agent,
     create_task,
     view_tasks,
-    update_task
+    update_task,
 )
-from prompts import (
+from . import (
     TASK_CREATION_INSTRUCTIONS,
     TASK_VIEW_INSTRUCTIONS,
-    TASK_UPDATE_INSTRUCTIONS
+    TASK_UPDATE_INSTRUCTIONS,
+    triage_instructions
 )
 
 dotenv.load_dotenv()
@@ -21,6 +23,13 @@ dotenv.load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
+
+triage_agent = Agent(
+    name="Triage Agent",
+    instructions=triage_instructions,
+    model=os.getenv("OPENAI_MODEL_NAME"),
+    functions=[transfer_to_task_creation_agent, transfer_to_task_update_agent, transfer_to_task_view_agent],
+)
 
 task_creation_agent = Agent(
     name="Task Creation Agent",
@@ -42,3 +51,4 @@ task_update_agent = Agent(
     model=os.getenv("OPENAI_MODEL_NAME"),
     functions=[update_task, transfer_to_task_view_agent]
 )
+

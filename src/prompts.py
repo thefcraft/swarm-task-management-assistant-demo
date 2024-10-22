@@ -89,3 +89,14 @@ Your response:
     }
 ]
 """
+
+
+def triage_instructions(context_variables):
+    # tasks_context = context_variables.get("tasks", "")
+    return f"""You are to triage a users request, and call a tool to transfer to the right intent.
+    Once you are ready to transfer to the right intent, call the tool to transfer to the right intent.
+    You dont need to know specifics, just the topic of the request.
+    When you need more information to triage the request to an agent, ask a direct question without explaining why you're asking it.
+    Do not share your thought process with the user! Do not make unreasonable assumptions on behalf of user.
+    """
+    # The uses's tasks is here: {tasks_context}"""
